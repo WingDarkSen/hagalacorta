@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Acortador de link</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <div class="theme-toggle" style="position: absolute; top: 1rem; right: 1rem;">
+    <label><input type="checkbox" id="modeToggle"> 🌗 Modo Oscuro</label>
+  </div>
+
+  <div class="container">
+    <h1>✂️ Hágala Corta</h1>
+    <form method="POST">
+      <input type="url" name="url" id="urlInput" placeholder="Pega tu enlace largo aquí" required />
+      <button type="submit">¡Hazla Corta!</button>
+      <button type="button" onclick="limpiarCampo()">Limpiar</button>
+    </form>
+
+    {% if short_url %}
+    <div class="resultado">
+      <p>Tu enlace corto es:</p>
+      <a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
+      <button type="button" onclick="copiarEnlace()">Copiar</button>
+    </div>
+    {% endif %}
+
+    <footer style="margin-top: 3rem; font-size: 0.9rem; color: #888;">
+      <img src="{{ url_for('static', filename='miMarca-64x64.png') }}" alt="mi marca" style="height: 20px; vertical-align: middle; margin-right: 8px;">
+      Con 🫶🏽 <a href="https://wingdarksen.github.io/" target="_blank" rel="noopener"><strong>WDKS</strong></a> · HágalaCorta 2025
+      <img src="{{ url_for('static', filename='miMarca-64x64.png') }}" alt="mi marca" style="height: 20px; vertical-align: middle; margin-left: 8px;">
+    </footer>
+  </div>
+</body>
+</html>
