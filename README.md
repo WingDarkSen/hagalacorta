@@ -44,3 +44,4 @@ A simple, clean and tracker-free link shortener.
 3. Instala Flask:  
    ```bash
    pip install flask
+ 
