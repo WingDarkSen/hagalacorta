@@ -1,7 +1,6 @@
 from flask import Flask, request, redirect, render_template, jsonify, url_for
 import sqlite3
 import string, random
-import os
 
 app = Flask(__name__)
 DB = 'cortita.db'
@@ -49,17 +48,12 @@ def estadisticas(codigo):
         return jsonify(dict(row))
     return jsonify({'error': 'Código no encontrado'}), 404
 
-#
-#if __name__ == '__main__':
-#    app.run(debug=True)
-#
 
 @app.route('/ping')
 def ping():
-    return 'pong', 200
+    # Endpoint utilizado para mantener activo el servidor en Render.
+    # Llamado automáticamente por cron-job.org cada 30 minutos.
+    return "Pong", 200
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
-
-
+    app.run(debug=True)
